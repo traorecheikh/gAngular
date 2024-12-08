@@ -1,0 +1,52 @@
+name: Deploy Angular App
+
+on:
+  push:
+    branches:
+      - prod
+      - dev
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '22'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular app
+        run: |
+          if [[ $GITHUB_REF == 'refs/heads/prod' ]]; then
+            ng build --configuration production
+          else
+            ng build --configuration development
+          fi
+
+      - name: Deploy to prod branch
+        if: github.ref == 'refs/heads/prod'
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git checkout prod
+          git rm -r *
+          cp -r dist/your-app/* .
+          git add .
+          git commit -m "Deploy production build"
+          git push origin prod
+
+      - name: Deploy to dev branch
+        if: github.ref == 'refs/heads/dev'
+        run: |
+          git config --global user.name 'github-actions'
+          git config --global user.email 'github-actions@github.com'
+          git checkout dev
+          git add .
+          git commit -m "Deploy development build"
+          git push origin dev
