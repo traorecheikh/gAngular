@@ -41,13 +41,3 @@ jobs:
           git add .
           git commit -m "Deploy production build"
           git push origin prod
-
-      - name: Deploy to dev branch
-        if: github.ref == 'refs/heads/dev'
-        run: |
-          git config --global user.name 'github-actions'
-          git config --global user.email 'github-actions@github.com'
-          git checkout dev
-          git add .
-          git commit -m "Deploy development build"
-          git push origin dev
