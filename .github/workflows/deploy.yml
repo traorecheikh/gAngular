@@ -46,7 +46,7 @@ jobs:
 
           rm -rf node_modules/
 
-          cp -r dist/appname/* .
+          cp -r dist/gestion-etc/* .
 
           git add .
           git commit -m "Deploy production build" || echo "No changes to commit"
