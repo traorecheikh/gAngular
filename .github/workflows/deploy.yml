@@ -4,28 +4,33 @@ on:
   push:
     branches:
       - main
-      - prod
       - dev
+      - prod
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.19'
 
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Step 4: Build Angular app (always build production version)
       - name: Build Angular app
         run: npx ng build --configuration production
 
+      # Step 5: Deploy to prod branch (always)
       - name: Deploy to prod branch
         run: |
           git config --global user.name 'github-actions'
@@ -33,22 +38,27 @@ jobs:
 
           git fetch origin
 
+          # If prod branch exists, checkout and clean, else create a new one
           if git show-ref --verify --quiet refs/heads/prod; then
             git checkout prod
           else
             git checkout --orphan prod
           fi
 
+          # Clean the prod branch, remove everything except .git
           git rm -rf . || echo "No files to remove"
 
-          # Copy only the build files to the root of the prod branch
+          # Copy only the contents of dist/gestion-etc/ to the root of the prod branch
           cp -r dist/gestion-etc/* .
 
-          # Stage and commit all changes
+          # Make sure only the build files are added (no node_modules, etc.)
           git add .
+
+          # Commit changes if there are any
           git commit -m "Deploy production build" || echo "No changes to commit"
 
-          # Force push to prod branch
+          # Push changes to prod branch
           git push --force origin prod
 
+          # Show status after the push
           git status
