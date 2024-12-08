@@ -12,59 +12,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.19'
 
-      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build Angular app (always build production version)
       - name: Build Angular app
         run: npx ng build --configuration production
 
-      # Step 5: Deploy to prod branch (always)
       - name: Deploy to prod branch
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-          # Fetch all branches to make sure we are aware of remote changes
           git fetch origin
 
-          # Check if prod branch exists, if not create it
           if git show-ref --verify --quiet refs/heads/prod; then
-            echo "The prod branch exists."
             git checkout prod
           else
-            echo "The prod branch doesn't exist. Creating new orphan branch."
             git checkout --orphan prod
           fi
 
-          # Clean up the prod branch (remove all files except .git)
           git rm -rf . || echo "No files to remove"
 
-          # Check the contents of dist/gestion-etc directory to ensure build files exist
-          echo "Checking contents of dist/gestion-etc:"
           ls -la dist/gestion-etc/
 
-          # Copy the build files to the root of the prod branch
-          cp -r dist/gestion-etc/* .  # Ensure this is the correct path
+          cp -r dist/gestion-etc/* .
 
-          # Stage and commit all changes
           git add .
           git commit -m "Deploy production build" || echo "No changes to commit"
 
-          # Force push to prod branch
           git push --force origin prod
 
-          # Debugging: Show status after push
-          echo "Git Status After Push"
           git status
