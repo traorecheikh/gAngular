@@ -3,6 +3,7 @@ name: Deploy Angular App
 on:
   push:
     branches:
+      - main
       - prod
       - dev
 
@@ -25,17 +26,26 @@ jobs:
       - name: Build Angular app
         run: |
           if [[ $GITHUB_REF == 'refs/heads/prod' ]]; then
-            npx ng build --configuration production
+            npx ng build --configuration production  # Build production version
           fi
 
+      # Deploy to prod branch
       - name: Deploy to prod branch
         if: github.ref == 'refs/heads/prod'
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
-          git checkout prod
-          git rm -r *
-          cp -r dist/gestion-etc/* .
+
+          git checkout prod || git checkout --orphan prod
+
+          git rm -rf . || echo "No files to remove"
+
+          echo "Checking dist folder contents:"
+          ls dist/gestion-etc/
+
+          cp -r dist/gestion-etc/* .  
+
+          git status
           git add .
-          git commit -m "Deploy production build"
-          git push origin prod
+          git commit -m "Deploy production build" || echo "No changes to commit"
+          git push --force origin prod
