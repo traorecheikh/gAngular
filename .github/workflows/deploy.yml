@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
@@ -16,7 +17,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: '16'
 
       - name: Install dependencies
         run: npm install
@@ -24,9 +25,9 @@ jobs:
       - name: Build Angular app
         run: |
           if [[ $GITHUB_REF == 'refs/heads/prod' ]]; then
-            ng build --configuration production
+            npx ng build --configuration production  # For the 'prod' branch
           else
-            ng build --configuration development
+            npx ng build --configuration development  # For the 'dev' branch
           fi
 
       - name: Deploy to prod branch
