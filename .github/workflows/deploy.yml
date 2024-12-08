@@ -45,9 +45,6 @@ jobs:
             git checkout --orphan prod
           fi
 
-          # Remove all files except for .git directory, dist/ folder will be added later
-          git ls-files | grep -v 'dist/' | xargs git rm -f || echo "No files to remove"
-
           # Copy only the contents of dist/gestion-etc/* to the root of the prod branch
           cp -r dist/gestion-etc/* .
 
