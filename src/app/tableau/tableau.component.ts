@@ -1,6 +1,5 @@
-import { Component, ChangeDetectorRef } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
 
 interface Etudiant {
   id: number;
@@ -11,15 +10,20 @@ interface Etudiant {
 }
 
 @Component({
-  selector: 'app-root',
+  selector: 'app-table',
+  templateUrl: './tableau.component.html',
+  styleUrls: ['./tableau.component.css'],
   standalone: false,
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
-  etudiants: Etudiant[] = [];
-  constructor(private http: HttpClient) {
+export class TableauComponent implements OnInit {
+  @Input() etudiants: Etudiant[] = [];
+
+  constructor(private http: HttpClient) {}
+
+  ngOnInit(): void {
+    this.getEtudiants();
   }
+
   getEtudiants(): void {
     const url = 'http://localhost:3000/etudiants';
     this.http.get<Etudiant[]>(url).subscribe((response) => {

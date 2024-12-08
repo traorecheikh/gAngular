@@ -1,21 +1,3 @@
-<form (ngSubmit)="onSubmit()">
-  <div>
-    <label for="prenom">Prénom</label>
-    <input id="prenom" [(ngModel)]="formData.prenom" name="prenom" type="text" required />
-  </div>
-  <div>
-    <label for="nom">Nom</label>
-    <input id="nom" [(ngModel)]="formData.nom" name="nom" type="text" required />
-  </div>
-  <div>
-    <label for="age">Age</label>
-    <input id="age" [(ngModel)]="formData.age" name="age" type="number" required />
-  </div>
-  <div>
-    <label for="classe">Classe</label>
-    <input id="classe" [(ngModel)]="formData.classe" name="classe" type="text" required />
-  </div>
-  <button type="submit">Valider</button>
-</form>
-
+<nav></nav>
+<app-form></app-form>
 <app-table [etudiants]="etudiants"></app-table>

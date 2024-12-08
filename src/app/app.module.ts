@@ -6,11 +6,13 @@ import { AppComponent } from './app.component';
 import {TableauComponent} from './tableau/tableau.component';
 import {FormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
+import { FormComponent } from './form/form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TableauComponent
+    TableauComponent,
+    FormComponent
   ],
   imports: [
     BrowserModule,

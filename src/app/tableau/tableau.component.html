@@ -1,0 +1,24 @@
+<h2>Liste des étudiants</h2>
+<table>
+  <thead>
+  <tr>
+    <th>ID</th>
+    <th>Prenom</th>
+    <th>Nom</th>
+    <th>Age</th>
+    <th>Classe</th>
+    <th>Action</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let etudiant of etudiants">
+    <td>{{ etudiant.id }}</td>
+    <td>{{ etudiant.prenom }}</td>
+    <td>{{ etudiant.nom }}</td>
+    <td>{{ etudiant.age }}</td>
+    <td>{{ etudiant.classe }}</td>
+    <a class="modifier" id="modifier" href="#">Modifier</a>
+    <a class="delete" id="delete" href="#">Supprimer</a>
+  </tr>
+  </tbody>
+</table>
