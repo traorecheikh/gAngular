@@ -27,8 +27,7 @@ jobs:
 
       # Build the Angular app (only for prod branch)
       - name: Build Angular app
-        run: |
-            npx ng build --configuration production  # Build production version
+        run: npx ng build --configuration production  # Build production version
 
       # Deploy to prod branch
       - name: Deploy to prod branch
