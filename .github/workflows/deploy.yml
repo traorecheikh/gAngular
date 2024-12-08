@@ -42,6 +42,8 @@ jobs:
             git checkout --orphan prod
           fi
           git ls-files | grep -v 'dist/' | xargs git rm -f || echo "No files to remove"
+          git rn -f node_modules
+          git cp dist/gestion-etc/* .
 
           git add .
           git commit -m "Deploy production build" || echo "No changes to commit"
