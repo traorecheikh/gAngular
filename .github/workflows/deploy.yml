@@ -3,7 +3,6 @@ name: Deploy Angular App
 on:
   push:
     branches:
-      - main
       - prod
       - dev
 
@@ -12,19 +11,24 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout the code
       - name: Checkout code
         uses: actions/checkout@v2
 
+      # Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.19'
 
+      # Install dependencies
       - name: Install dependencies
         run: npm install
 
+      # Build the Angular app (only for prod branch)
       - name: Build Angular app
-        run: npx ng build --configuration production
+        run: |
+            npx ng build --configuration production  # Build production version
 
       # Deploy to prod branch
       - name: Deploy to prod branch
@@ -33,16 +37,25 @@ jobs:
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
+          # Checkout the prod branch (if it doesn't exist, create it)
           git checkout prod || git checkout --orphan prod
 
+          # Clean up prod branch (remove all files except .git)
           git rm -rf . || echo "No files to remove"
 
-          echo "Checking dist folder contents:"
-          ls dist/gestion-etc/
+          # Verify the build folder contents before copying
+          echo "Checking contents of dist/gestion-etc:"
+          ls -la dist/gestion-etc/
 
-          cp -r dist/gestion-etc/* .
+          # Copy the dist files to the root of the prod branch
+          cp -r dist/gestion-etc/* .  # Ensure this is the correct path
 
+          # Check if there are any changes
           git status
+
+          # Stage and commit changes
           git add .
           git commit -m "Deploy production build" || echo "No changes to commit"
+
+          # Force push to prod branch
           git push --force origin prod
