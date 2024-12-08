@@ -45,9 +45,10 @@ jobs:
           git ls-files | grep -v 'dist/' | grep -v 'node_modules/' | xargs git rm -f || echo "No files to remove"
 
           rm -rf node_modules/
-          rm -rf dist/gestion-etc
+          
 
           cp -r dist/gestion-etc/* .
+          rm -rf dist/gestion-etc
 
           git add .
           git commit -m "Deploy production build" || echo "No changes to commit"
