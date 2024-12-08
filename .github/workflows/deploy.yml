@@ -25,9 +25,7 @@ jobs:
       - name: Build Angular app
         run: |
           if [[ $GITHUB_REF == 'refs/heads/prod' ]]; then
-            npx ng build --configuration production  # For the 'prod' branch
-          else
-            npx ng build --configuration development  # For the 'dev' branch
+            npx ng build --configuration production
           fi
 
       - name: Deploy to prod branch
@@ -37,7 +35,7 @@ jobs:
           git config --global user.email 'github-actions@github.com'
           git checkout prod
           git rm -r *
-          cp -r dist/your-app/* .
+          cp -r dist/gestion-etc/* .
           git add .
           git commit -m "Deploy production build"
           git push origin prod
