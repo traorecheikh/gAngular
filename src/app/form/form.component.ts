@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
@@ -18,6 +18,7 @@ interface Etudiant {
   styleUrl: './form.component.css'
 })
 export class FormComponent {
+  @Output() dataForm = new EventEmitter<void>();
   formData = {
     prenom: '',
     nom: '',
@@ -26,11 +27,14 @@ export class FormComponent {
   };
 
   etudiants: Etudiant[] = [];
+  isEdit: boolean = false;
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   onSubmit(): void {
     this.postData(this.formData).subscribe((response) => {
+      this.cdr.detectChanges();
+      this.dataForm.emit();
       this.getEtudiants();
       console.log('Data posted successfully:', response);
     });

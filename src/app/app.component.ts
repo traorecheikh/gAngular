@@ -18,12 +18,20 @@ interface Etudiant {
 })
 export class AppComponent {
   etudiants: Etudiant[] = [];
+  ajouter: boolean = false;
   constructor(private http: HttpClient) {
+  }
+  boutonClick():void{
+    this.ajouter = !this.ajouter;
   }
   getEtudiants(): void {
     const url = 'http://localhost:3000/etudiants';
     this.http.get<Etudiant[]>(url).subscribe((response) => {
       this.etudiants = response;
     });
+  }
+
+  onDataForm() {
+    this.getEtudiants();
   }
 }

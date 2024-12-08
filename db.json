@@ -6,6 +6,41 @@
       "nom": "Traore",
       "age": 23,
       "classe": "l3gl"
+    },
+    {
+      "id": "5101",
+      "prenom": "Cheikh",
+      "nom": "Traore",
+      "age": 23,
+      "classe": "l3gl"
+    },
+    {
+      "id": "b07c",
+      "prenom": "Cheikh",
+      "nom": "Traore",
+      "age": 23,
+      "classe": "l3gl"
+    },
+    {
+      "id": "12a8",
+      "prenom": "Houleymatou",
+      "nom": "Diallo",
+      "age": 20,
+      "classe": "l3gl"
+    },
+    {
+      "id": "00bf",
+      "prenom": "Houleymatou",
+      "nom": "Diallo",
+      "age": 20,
+      "classe": "l3gl"
+    },
+    {
+      "id": "db82",
+      "prenom": "ds",
+      "nom": "Diallo",
+      "age": 2,
+      "classe": "L2"
     }
   ]
 }

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, Input, OnInit, output} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Etudiant {
@@ -17,7 +17,7 @@ interface Etudiant {
 })
 export class TableauComponent implements OnInit {
   @Input() etudiants: Etudiant[] = [];
-
+  isEdit = false;
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {

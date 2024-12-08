@@ -1,80 +1,115 @@
-/* General body and layout */
+/* Global Styles */
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-  background-color: #F4F4F5;
+  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Arial, sans-serif;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  color: #1C1C1E;
+  background-color: #f2f2f7;
+  color: #1c1c1e;
+}
+
+.app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  min-height: 100vh;
 }
 
-/* Form Styling */
-form {
-  background-color: #FFFFFF;
-  padding: 20px 30px;
-  margin: 40px 0;
-  border-radius: 16px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+/* Navbar */
+.navbar {
   width: 100%;
-  max-width: 500px;
+  background: linear-gradient(90deg, #007aff, #5856d6);
+  padding: 15px 20px;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-form div {
-  margin-bottom: 16px;
+.navbar .brand {
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -0.5px;
 }
 
-label {
-  font-size: 14px;
-  color: #1C1C1E;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 15px;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-links li {
+  font-size: 1rem;
   font-weight: 500;
-  margin-bottom: 8px;
-  display: block;
 }
 
-input[type="text"],
-input[type="number"] {
-  font-size: 16px;
-  padding: 12px;
-  border: 1px solid #D1D1D6;
-  border-radius: 12px;
-  background-color: #F4F4F5;
-  color: #1C1C1E;
+.nav-links a {
+  text-decoration: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+.nav-links a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Content Section */
+.content {
   width: 100%;
-  box-sizing: border-box;
+  max-width: 1100px;
+  padding: 20px;
+  margin-top: 20px;
 }
 
-input[type="text"]:focus,
-input[type="number"]:focus {
-  border-color: #007AFF;
-  outline: none;
-  background-color: #FFFFFF;
-}
-
+/* Button */
 button {
   padding: 12px 20px;
-  font-size: 16px;
+  font-size: 1rem;
   color: white;
-  background-color: #007AFF;
+  background: linear-gradient(90deg, #007aff, #5856d6);
   border: none;
   border-radius: 12px;
   cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  width: 100%;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
 }
 
 button:hover {
-  background-color: #0051A1;
-  transform: scale(1.05);
+  background: linear-gradient(90deg, #005fcc, #4540a0);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-button:focus {
-  outline: 3px solid #0051A1;
-  outline-offset: 4px;
+/* Form Component Styling */
+app-form {
+  display: block;
+  margin: 20px 0;
+}
+
+/* Table Component Styling */
+app-table {
+  margin-top: 20px;
+  border-radius: 20px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+/* Adjustments for iOS Aesthetic */
+input, textarea, select {
+  font-size: 1rem;
+  padding: 10px;
+  border: 1px solid #d1d1d6;
+  border-radius: 12px;
+  background-color: #f2f2f7;
+  color: #1c1c1e;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+}
+
+input:focus, textarea:focus, select:focus {
+  border-color: #007aff;
+  box-shadow: 0 0 6px rgba(0, 122, 255, 0.5);
+  outline: none;
 }
