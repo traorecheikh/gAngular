@@ -1,0 +1,11 @@
+{
+  "etudiants": [
+    {
+      "id": "9ea7",
+      "prenom": "Cheikh",
+      "nom": "Traore",
+      "age": 23,
+      "classe": "l3gl"
+    }
+  ]
+}
