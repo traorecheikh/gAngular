@@ -4,19 +4,20 @@ on:
   push:
     branches:
       - main
-      - dev
       - prod
+      - dev
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checkout the code
+      # Step 1: Checkout code
       - name: Checkout code
         uses: actions/checkout@v2
 
       # Step 2: Set up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.19'
@@ -25,11 +26,10 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build Angular app (always build production version)
+      # Step 4: Build Angular app (only for prod branch)
       - name: Build Angular app
         run: npx ng build --configuration production
-
-      # Step 5: Deploy to prod branch (always)
+# Step 5: Deploy to prod branch (always)
       - name: Deploy to prod branch
         run: |
           git config --global user.name 'github-actions'
