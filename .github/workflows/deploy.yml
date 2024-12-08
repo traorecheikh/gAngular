@@ -26,17 +26,27 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      # Step 4: Build Angular app (only for prod branch)
+      # Step 4: Build Angular app (always build production version)
       - name: Build Angular app
         run: npx ng build --configuration production
-# Step 5: Deploy to prod branch (always)
+
+      # Step 5: Deploy to prod branch (always)
       - name: Deploy to prod branch
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-          # Checkout the prod branch (create it if it doesn't exist)
-          git checkout prod || git checkout --orphan prod
+          # Fetch all branches to make sure we are aware of remote changes
+          git fetch origin
+
+          # Check if prod branch exists, if not create it
+          if git show-ref --verify --quiet refs/heads/prod; then
+            echo "The prod branch exists."
+            git checkout prod
+          else
+            echo "The prod branch doesn't exist. Creating new orphan branch."
+            git checkout --orphan prod
+          fi
 
           # Clean up the prod branch (remove all files except .git)
           git rm -rf . || echo "No files to remove"
@@ -54,3 +64,7 @@ jobs:
 
           # Force push to prod branch
           git push --force origin prod
+
+          # Debugging: Show status after push
+          echo "Git Status After Push"
+          git status
