@@ -41,13 +41,14 @@ jobs:
 
           git rm -rf . || echo "No files to remove"
 
-          ls -la dist/gestion-etc/
-
+          # Copy only the build files to the root of the prod branch
           cp -r dist/gestion-etc/* .
 
+          # Stage and commit all changes
           git add .
           git commit -m "Deploy production build" || echo "No changes to commit"
 
+          # Force push to prod branch
           git push --force origin prod
 
           git status
