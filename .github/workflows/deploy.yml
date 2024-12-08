@@ -24,10 +24,7 @@ jobs:
         run: npm install
 
       - name: Build Angular app
-        run: |
-          if [[ $GITHUB_REF == 'refs/heads/prod' ]]; then
-            npx ng build --configuration production  # Build production version
-          fi
+        run: npx ng build --configuration production
 
       # Deploy to prod branch
       - name: Deploy to prod branch
@@ -43,7 +40,7 @@ jobs:
           echo "Checking dist folder contents:"
           ls dist/gestion-etc/
 
-          cp -r dist/gestion-etc/* .  
+          cp -r dist/gestion-etc/* .
 
           git status
           git add .
