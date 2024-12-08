@@ -3,56 +3,52 @@ name: Deploy Angular App
 on:
   push:
     branches:
-      - prod
+      - main
       - dev
+      - prod
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checkout the code
+      # Step 1: Checkout the code
       - name: Checkout code
         uses: actions/checkout@v2
 
-      # Set up Node.js
-      - name: Set up Node.js
+      # Step 2: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18.19'
 
-      # Install dependencies
+      # Step 3: Install dependencies
       - name: Install dependencies
         run: npm install
 
-      # Build the Angular app (only for prod branch)
+      # Step 4: Build Angular app (always build production version)
       - name: Build Angular app
-        run: npx ng build --configuration production  # Build production version
+        run: npx ng build --configuration production
 
-      # Deploy to prod branch
+      # Step 5: Deploy to prod branch (always)
       - name: Deploy to prod branch
-        if: github.ref == 'refs/heads/prod'
         run: |
           git config --global user.name 'github-actions'
           git config --global user.email 'github-actions@github.com'
 
-          # Checkout the prod branch (if it doesn't exist, create it)
+          # Checkout the prod branch (create it if it doesn't exist)
           git checkout prod || git checkout --orphan prod
 
-          # Clean up prod branch (remove all files except .git)
+          # Clean up the prod branch (remove all files except .git)
           git rm -rf . || echo "No files to remove"
 
-          # Verify the build folder contents before copying
+          # Check the contents of dist/gestion-etc directory to ensure build files exist
           echo "Checking contents of dist/gestion-etc:"
           ls -la dist/gestion-etc/
 
-          # Copy the dist files to the root of the prod branch
+          # Copy the build files to the root of the prod branch
           cp -r dist/gestion-etc/* .  # Ensure this is the correct path
 
-          # Check if there are any changes
-          git status
-
-          # Stage and commit changes
+          # Stage and commit all changes
           git add .
           git commit -m "Deploy production build" || echo "No changes to commit"
 
