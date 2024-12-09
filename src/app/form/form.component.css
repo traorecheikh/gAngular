@@ -1,46 +1,31 @@
-/* Form Container */
 .form-container {
   width: 100%;
   max-width: 500px;
-  background: rgba(255, 255, 255, 0.85);
+  background: transparent;
   padding: 20px;
-  border-radius: 16px;
-  box-sizing: border-box;
-  transition: transform 0.3s ease;
-  backdrop-filter: blur(8px);
-  overflow-y: auto; /* Allow vertical scroll inside the form */
-  max-height: 70vh; /* Ensure form container doesn't overflow too much */
-}
-
-.form-container:hover {
-  transform: translateY(-3px);
-}
-
-.form-container h2 {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  text-align: center;
-  margin-bottom: 20px;
+  border: 1px solid #ffffff;
+  border-radius: 8px;
+  overflow-y: auto;
+  max-height: 70vh;
 }
 
 input {
   width: 100%;
-  padding: 14px;
+  padding: 12px;
   font-size: 16px;
-  background-color: #f9f9f9;
-  border: 1px solid #d1d1d6;
-  border-radius: 16px;
-  transition: all 0.3s ease;
+  background-color: transparent;
+  border: 1px solid #f0e6d2;
+  border-radius: 8px;
+  color: #f0e6d2;
+  margin-bottom: 10px;
 }
 
 input:focus {
-  border-color: #007aff;
-  background-color: #fff;
   outline: none;
+  border-color: #fff;
 }
 
-input[type="text"]::placeholder {
+input::placeholder {
   color: #bbb;
 }
 
@@ -48,20 +33,14 @@ input[type="text"]::placeholder {
   width: 100%;
   padding: 14px;
   font-size: 16px;
-  background: linear-gradient(145deg, #00aaff, #007aff);
-  color: white;
+  background-color: #D8C3A5;
+  color: #1e1e1e;
   border: none;
-  border-radius: 16px;
+  border-radius: 8px;
   cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
-  margin-top: 20px;
+  transition: background 0.3s ease;
 }
 
 .btn-submit:hover {
-  background: linear-gradient(145deg, #0095d9, #005bbb);
-  transform: scale(1.05);
-}
-
-.btn-submit:active {
-  transform: scale(0.98);
+  background-color: #e0d6b2;
 }

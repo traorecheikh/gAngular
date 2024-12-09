@@ -1,52 +1,21 @@
-/* App Content */
-.content {
-  width: 100%;
-  padding: 20px;
-  background: #fff;
-  overflow-y: auto; /* Add scroll if content overflows */
+/* App Component - Action Button Styles */
+.action-button-container {
+  margin: 10px;
 }
 
-/* Table Styling */
-app-table {
-  margin-top: 30px;
-  background-color: #fafafa;
-  border-radius: 16px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
-  overflow: hidden;
-}
-
-app-table:hover {
-  background-color: #f1f1f1;
-}
-
-/* Form Styling */
-app-form {
-  margin-top: 20px;
-  margin: 20px;
-  background-color: #f0f0f5;
-  border-radius: 16px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-}
-
-/* Button Hover & Active States */
+/* General Action Button */
 .action-button {
-  padding: 12px 20px;
-  font-size: 16px;
-  background: linear-gradient(145deg, #007aff, #00aaff);
-  color: white;
+  background-color: #ffffff; /* Ant Design blue */
+  color: #000000;
+  padding: 10px 20px;
   border: none;
-  border-radius: 16px;
+  border-radius: 4px;
   cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
-  margin-top: 20px;
+  font-size: 14px;
+  transition: opacity 0.3s ease;
+  opacity: 0.95; /* Slightly transparent */
 }
 
 .action-button:hover {
-  background: linear-gradient(145deg, #005bbb, #0095d9);
-  transform: scale(1.05);
-}
-
-.action-button:active {
-  transform: scale(0.98);
+  opacity: 1; /* Full opacity on hover */
 }

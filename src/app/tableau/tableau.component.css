@@ -1,39 +1,23 @@
-/* General Button Styling for table actions */
-button {
-  padding: 12px 20px;
-  font-size: 16px;
+table {
+  display: table; /* Ensure it behaves like a table */
+  margin-top: 20px;
+  border: 3px solid #ffffff;
+  border-collapse: collapse;
+  border-radius: 8px;
+  padding: 10px;
+  color: #ffffff;
+}
+
+table th, table td {
+  border: 2px solid #ffffff;
+  padding: 8px;
+  text-align: left;
   color: white;
-  border: none;
-  border-radius: 16px;
-  cursor: pointer;
-  transition: transform 0.3s ease, background 0.3s ease;
-  margin-right: 10px; /* Add spacing between buttons */
+  font-weight: bold;
 }
-
-/* Modifier Button */
-.modifier {
-  background: linear-gradient(145deg, #007aff, #00aaff);
+table text{
+  color: #e0d6b2;
 }
-
-.modifier:hover {
-  background: linear-gradient(145deg, #005bbb, #0095d9);
-  transform: scale(1.05);
-}
-
-.modifier:active {
-  transform: scale(0.98);
-}
-
-/* Supprimer Button */
-.supprimer {
-  background: linear-gradient(145deg, #ff4b5c, #ff2a6b); /* Red gradient */
-}
-
-.supprimer:hover {
-  background: linear-gradient(145deg, #d13c4f, #ff2a6b);
-  transform: scale(1.05);
-}
-
-.supprimer:active {
-  transform: scale(0.98);
+table::part(table-content) {
+  border: 2px solid #f0e6d2;
 }

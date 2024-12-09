@@ -1,7 +1,6 @@
 <app-form *ngIf="isEdit" [isEdit]="true" [formData]="formData" (dataForm)="onDataForm()"></app-form>
 <h2>Liste des étudiants</h2>
 
-<!-- Display Table and Manage Actions -->
 <table>
   <thead>
   <tr>
@@ -19,9 +18,7 @@
     <td>{{ etudiant.age }}</td>
     <td>{{ etudiant.classe }}</td>
     <td>
-      <!-- Show Modifier button only when not editing -->
       <button class="modifier" *ngIf="!isEdit" (click)="editEtudiant(etudiant)">Modifier</button>
-      <!-- Show Supprimer button -->
       <button class="supprimer">Supprimer</button>
     </td>
   </tr>
