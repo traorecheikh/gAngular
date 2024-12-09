@@ -1,66 +1,67 @@
+/* Form Container */
 .form-container {
-  background-color: white;
-  padding: 20px;
-  border-radius: 20px;
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
   width: 100%;
   max-width: 500px;
-  margin: 20px auto;
-  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Arial, sans-serif;
+  background: rgba(255, 255, 255, 0.85);
+  padding: 20px;
+  border-radius: 16px;
+  box-sizing: border-box;
+  transition: transform 0.3s ease;
+  backdrop-filter: blur(8px);
+  overflow-y: auto; /* Allow vertical scroll inside the form */
+  max-height: 70vh; /* Ensure form container doesn't overflow too much */
 }
 
-h2 {
-  font-size: 1.8rem;
-  font-weight: bold;
-  color: #007aff;
-  margin-bottom: 15px;
+.form-container:hover {
+  transform: translateY(-3px);
+}
+
+.form-container h2 {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
   text-align: center;
-}
-
-.form-group {
-  margin-bottom: 15px;
-}
-
-label {
-  display: block;
-  font-size: 1rem;
-  color: #1c1c1e;
-  font-weight: 500;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
 
 input {
   width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  color: #1c1c1e;
-  background-color: #f2f2f7;
+  padding: 14px;
+  font-size: 16px;
+  background-color: #f9f9f9;
   border: 1px solid #d1d1d6;
-  border-radius: 12px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
   transition: all 0.3s ease;
 }
 
 input:focus {
   border-color: #007aff;
-  box-shadow: 0 0 6px rgba(0, 122, 255, 0.5);
+  background-color: #fff;
   outline: none;
+}
+
+input[type="text"]::placeholder {
+  color: #bbb;
 }
 
 .btn-submit {
   width: 100%;
-  padding: 12px;
-  font-size: 1rem;
-  font-weight: bold;
+  padding: 14px;
+  font-size: 16px;
+  background: linear-gradient(145deg, #00aaff, #007aff);
   color: white;
-  background: linear-gradient(90deg, #007aff, #5856d6);
   border: none;
-  border-radius: 12px;
+  border-radius: 16px;
   cursor: pointer;
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.3s ease, background 0.3s ease;
+  margin-top: 20px;
 }
 
 .btn-submit:hover {
-  background: linear-gradient(90deg, #005fcc, #4540a0);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  background: linear-gradient(145deg, #0095d9, #005bbb);
+  transform: scale(1.05);
+}
+
+.btn-submit:active {
+  transform: scale(0.98);
 }

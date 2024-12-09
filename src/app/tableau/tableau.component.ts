@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, Input, OnInit, output} from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 interface Etudiant {
@@ -17,7 +17,10 @@ interface Etudiant {
 })
 export class TableauComponent implements OnInit {
   @Input() etudiants: Etudiant[] = [];
-  isEdit = false;
+  @Output() editStateChange = new EventEmitter<boolean>();  // Emit when edit state changes
+  isEdit = false;  // Local state for editing
+  formData: Etudiant = { id: 0, prenom: '', nom: '', age: 0, classe: '' };
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -30,4 +33,18 @@ export class TableauComponent implements OnInit {
       this.etudiants = response;
     });
   }
+
+  // Function to handle the "Modifier" button click
+  editEtudiant(etudiant: Etudiant): void {
+    this.isEdit = true;
+    this.formData = { ...etudiant };  // Pre-fill the form with existing data
+    this.editStateChange.emit(this.isEdit);  // Emit the change to parent
+  }
+
+  onDataForm(): void {
+    this.getEtudiants();
+    this.isEdit = false;
+    this.editStateChange.emit(this.isEdit);  // Reset the edit state after form submission
+  }
+
 }

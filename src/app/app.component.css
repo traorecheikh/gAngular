@@ -1,115 +1,52 @@
-/* Global Styles */
-body {
-  font-family: -apple-system, BlinkMacSystemFont, "San Francisco", "Segoe UI", Roboto, Arial, sans-serif;
-  margin: 0;
-  background-color: #f2f2f7;
-  color: #1c1c1e;
-}
-
-.app-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Navbar */
-.navbar {
-  width: 100%;
-  background: linear-gradient(90deg, #007aff, #5856d6);
-  padding: 15px 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: white;
-  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.1);
-}
-
-.navbar .brand {
-  font-size: 1.8rem;
-  font-weight: 600;
-  letter-spacing: -0.5px;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 15px;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-links li {
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.nav-links a {
-  text-decoration: none;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 8px;
-  transition: background-color 0.3s ease;
-}
-
-.nav-links a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-/* Content Section */
+/* App Content */
 .content {
   width: 100%;
-  max-width: 1100px;
   padding: 20px;
-  margin-top: 20px;
+  background: #fff;
+  overflow-y: auto; /* Add scroll if content overflows */
 }
 
-/* Button */
-button {
-  padding: 12px 20px;
-  font-size: 1rem;
-  color: white;
-  background: linear-gradient(90deg, #007aff, #5856d6);
-  border: none;
-  border-radius: 12px;
-  cursor: pointer;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 20px;
-}
-
-button:hover {
-  background: linear-gradient(90deg, #005fcc, #4540a0);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
-}
-
-/* Form Component Styling */
-app-form {
-  display: block;
-  margin: 20px 0;
-}
-
-/* Table Component Styling */
+/* Table Styling */
 app-table {
-  margin-top: 20px;
-  border-radius: 20px;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  margin-top: 30px;
+  background-color: #fafafa;
+  border-radius: 16px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
   overflow: hidden;
 }
 
-/* Adjustments for iOS Aesthetic */
-input, textarea, select {
-  font-size: 1rem;
-  padding: 10px;
-  border: 1px solid #d1d1d6;
-  border-radius: 12px;
-  background-color: #f2f2f7;
-  color: #1c1c1e;
-  transition: border-color 0.3s ease, box-shadow 0.3s ease;
-  width: 100%;
+app-table:hover {
+  background-color: #f1f1f1;
 }
 
-input:focus, textarea:focus, select:focus {
-  border-color: #007aff;
-  box-shadow: 0 0 6px rgba(0, 122, 255, 0.5);
-  outline: none;
+/* Form Styling */
+app-form {
+  margin-top: 20px;
+  margin: 20px;
+  background-color: #f0f0f5;
+  border-radius: 16px;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Button Hover & Active States */
+.action-button {
+  padding: 12px 20px;
+  font-size: 16px;
+  background: linear-gradient(145deg, #007aff, #00aaff);
+  color: white;
+  border: none;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+  margin-top: 20px;
+}
+
+.action-button:hover {
+  background: linear-gradient(145deg, #005bbb, #0095d9);
+  transform: scale(1.05);
+}
+
+.action-button:active {
+  transform: scale(0.98);
 }

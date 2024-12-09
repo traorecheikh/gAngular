@@ -1,4 +1,4 @@
-<div class="form-container">
+<div class="form-container" *ngIf="ajouter || isEdit">
   <h2>{{ isEdit ? 'Modifier Étudiant' : 'Ajouter Étudiant' }}</h2>
   <form (ngSubmit)="onSubmit()">
     <div class="form-group">

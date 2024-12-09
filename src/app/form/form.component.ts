@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, EventEmitter, Output} from '@angular/core';
+import {ChangeDetectorRef, Component, EventEmitter, Input, Output} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 
@@ -13,43 +13,43 @@ interface Etudiant {
 @Component({
   selector: 'app-form',
   standalone: false,
-
   templateUrl: './form.component.html',
-  styleUrl: './form.component.css'
+  styleUrls: ['./form.component.css'],
 })
 export class FormComponent {
+  @Input() formData: Etudiant = { id: 0, prenom: '', nom: '', age: 0, classe: '' };
+  @Input() isEdit!: boolean;
   @Output() dataForm = new EventEmitter<void>();
-  formData = {
-    prenom: '',
-    nom: '',
-    age: 0,
-    classe: '',
-  };
-
-  etudiants: Etudiant[] = [];
-  isEdit: boolean = false;
+  @Input() ajouter!: boolean;
 
   constructor(private http: HttpClient, private cdr: ChangeDetectorRef) {}
 
   onSubmit(): void {
-    this.postData(this.formData).subscribe((response) => {
+    if (this.isEdit) {
+      console.log("test");
+      this.updateData(this.formData);
+    } else {
+
+      console.log("test");
+      this.addData(this.formData);
+    }
+  }
+
+  addData(data: Etudiant): void {
+    const url = 'http://localhost:3000/etudiants';
+    this.http.post(url, data).subscribe((response) => {
       this.cdr.detectChanges();
       this.dataForm.emit();
-      this.getEtudiants();
-      console.log('Data posted successfully:', response);
+      console.log('Student added:', response);
     });
   }
 
-  postData(data: any): Observable<any> {
-    const url = 'http://localhost:3000/etudiants';
-    return this.http.post(url, data);
-  }
-
-  getEtudiants(): void {
-    const url = 'http://localhost:3000/etudiants';
-    this.http.get<Etudiant[]>(url).subscribe((response) => {
-      this.etudiants = response;
+  updateData(data: Etudiant): void {
+    const url = `http://localhost:3000/etudiants/${data.id}`;
+    this.http.put(url, data).subscribe((response) => {
       this.cdr.detectChanges();
+      this.dataForm.emit();
+      console.log('success:', response);
     });
   }
 }

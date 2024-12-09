@@ -1,18 +1,15 @@
 <div class="app-container">
-  <nav class="navbar">
-    <div class="brand">Gestion Étudiant</div>
-    <ul class="nav-links">
-      <li><a href="#">Accueil</a></li>
-      <li><a href="#">Étudiants</a></li>
-      <li><a href="#">Paramètres</a></li>
-    </ul>
-  </nav>
-
   <div class="content">
-    <button (click)="boutonClick()">
-      {{ ajouter ? 'Cacher le formulaire' : 'Ajouter un étudiant' }}
-    </button>
-    <app-form *ngIf="ajouter" (dataForm)="onDataForm()"></app-form>
+    <header class="header">
+      <h1>Gestion des Étudiants</h1>
+    </header>
+
+    <div class="action-button-container">
+      <button (click)="boutonClick()" class="action-button">
+        {{ ajouter ? 'Cacher le formulaire' : 'Ajouter un étudiant' }}
+      </button>
+    </div>
+    <app-form *ngIf="ajouter" (dataForm)="onDataForm()" [ajouter]="true"></app-form>
     <app-table [etudiants]="etudiants"></app-table>
   </div>
 </div>
