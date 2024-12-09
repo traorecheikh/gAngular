@@ -40,6 +40,8 @@ export class FormComponent {
     this.http.post(url, data).subscribe((response) => {
       this.cdr.detectChanges();
       this.dataForm.emit();
+      this.ajouter = false;
+      this.isEdit = false;
       console.log('Student added:', response);
     });
   }
