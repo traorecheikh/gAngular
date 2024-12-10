@@ -17,8 +17,8 @@ interface Etudiant {
 })
 export class TableauComponent implements OnInit {
   @Input() etudiants: Etudiant[] = [];
-  @Output() editStateChange = new EventEmitter<boolean>();  // Emit when edit state changes
-  isEdit = false;  // Local state for editing
+  @Output() editStateChange = new EventEmitter<boolean>();
+  isEdit = false;
   formData: Etudiant = { id: 0, prenom: '', nom: '', age: 0, classe: '' };
 
   constructor(private http: HttpClient) {}
@@ -31,20 +31,27 @@ export class TableauComponent implements OnInit {
     const url = 'http://localhost:3000/etudiants';
     this.http.get<Etudiant[]>(url).subscribe((response) => {
       this.etudiants = response;
+      console.log(this.etudiants[0]);
     });
   }
 
-  // Function to handle the "Modifier" button click
+  deleteEtudiant(id:number):void{
+    const url = `http://localhost:3000/etudiants/${id}`;
+    this.http.delete(url).subscribe(response=>{
+      this.getEtudiants();
+    })
+  }
+
   editEtudiant(etudiant: Etudiant): void {
     this.isEdit = true;
-    this.formData = { ...etudiant };  // Pre-fill the form with existing data
-    this.editStateChange.emit(this.isEdit);  // Emit the change to parent
+    this.formData = { ...etudiant };
+    this.editStateChange.emit(this.isEdit);
   }
 
   onDataForm(): void {
     this.getEtudiants();
     this.isEdit = false;
-    this.editStateChange.emit(this.isEdit);  // Reset the edit state after form submission
+    this.editStateChange.emit(this.isEdit);
   }
 
 }

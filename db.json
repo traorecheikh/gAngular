@@ -1,18 +1,3 @@
 {
-  "etudiants": [
-    {
-      "id": "0",
-      "prenom": "Cheikh",
-      "nom": "Traore",
-      "age": 30,
-      "classe": "l3gl"
-    },
-    {
-      "id": 0,
-      "prenom": "Cheikh",
-      "nom": "Traore",
-      "age": 23,
-      "classe": "l3gl"
-    }
-  ]
+  "etudiants": []
 }

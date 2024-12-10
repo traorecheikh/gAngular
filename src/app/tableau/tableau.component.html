@@ -19,7 +19,7 @@
     <td>{{ etudiant.classe }}</td>
     <td>
       <button class="modifier" *ngIf="!isEdit" (click)="editEtudiant(etudiant)">Modifier</button>
-      <button class="supprimer">Supprimer</button>
+      <button class="supprimer" (click)="deleteEtudiant(etudiant.id)">Supprimer</button>
     </td>
   </tr>
   </tbody>
